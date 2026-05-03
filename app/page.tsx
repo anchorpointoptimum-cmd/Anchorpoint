@@ -78,6 +78,18 @@ export default function Home() {
 
       {/* Decorative element */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
+       <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xl text-slate-700 leading-relaxed mb-6">
+            Anchorpoint is an operational intelligence and governance consultancy focused on execution—not documentation.
+          </p>
+          <p className="text-xl text-slate-700 leading-relaxed">
+            We work within real environments to identify where processes break, where visibility is lost, and where control is absent.
+          </p>
+        </div>
+      </div>
+    </section>
 
       {/* SECTION 2 — THE PROBLEM */}
       <section className="mt-32 max-w-5xl">
