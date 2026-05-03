@@ -3,20 +3,81 @@ export default function Home() {
     <main className="min-h-screen bg-[#153D45] text-white flex flex-col items-center px-6 py-20 text-center">
 
       {/* SECTION 1 — HERO */}
-      <section className="max-w-5xl">
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-          Most operations don’t fail on paper. They fail in execution.
-        </h1>
+ <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-24">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-12 relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900 opacity-30 pointer-events-none"></div>
+            <img 
+            src="/logo.png"
+              alt="Anchorpoint - Optimum Global Ltd"
+              className="w-full max-w-lg mx-auto opacity-95 mix-blend-screen drop-shadow-2xl"
+              />
+          </div>
 
-        <p className="mt-6 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
-          Anchorpoint reveals how operations actually run—restoring visibility,
-          control, and stability where execution breaks.
-        </p>
+          {/* Trust Element */}
+          <div className="mb-8 text-xs text-slate-400 tracking-wide uppercase">
+            Controlled Operational Environment
+          </div>
 
-        <button className="mt-10 px-8 py-4 bg-teal-500 hover:bg-teal-400 rounded-xl text-lg font-semibold transition">
-          Request Operational Assessment
-        </button>
-      </section>
+          <h1 className="text-3xl md:text-5xl max-w-4xl mb-8 leading-tight">
+            Most operations don't fail on paper.<br />
+            They fail in execution.
+          </h1>
+
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mb-6">
+            Anchorpoint reveals how operations actually run—restoring visibility, control, and stability where execution breaks.
+          </p>
+
+          <p className="text-base text-teal-400 mb-12">
+            Clarity. Stability. Forward Motion.
+          </p>
+
+          <button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg transition-colors">
+            Request Operational Assessment
+          </button>
+        </div>
+      </div>
+
+      {/* Decorative element */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
+    </section>     <div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-12 relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900 opacity-30 pointer-events-none"></div>
+            <img
+  src="/logo.png"
+  alt="Anchorpoint - Optimum Global Ltd"
+  className="w-full max-w-lg mx-auto opacity-95 mix-blend-screen drop-shadow-2xl"
+/>
+          </div>
+
+          {/* Trust Element */}
+          <div className="mb-8 text-xs text-slate-400 tracking-wide uppercase">
+            Controlled Operational Environment
+          </div>
+
+          <h1 className="text-3xl md:text-5xl max-w-4xl mb-8 leading-tight">
+            Most operations don't fail on paper.<br />
+            They fail in execution.
+          </h1>
+
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mb-6">
+            Anchorpoint reveals how operations actually run—restoring visibility, control, and stability where execution breaks.
+          </p>
+
+          <p className="text-base text-teal-400 mb-12">
+            Clarity. Stability. Forward Motion.
+          </p>
+
+          <button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg transition-colors">
+            Request Operational Assessment
+          </button>
+        </div>
+      </div>
+
+      {/* Decorative element */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
 
       {/* SECTION 2 — THE PROBLEM */}
       <section className="mt-32 max-w-5xl">
