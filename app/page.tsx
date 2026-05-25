@@ -1,94 +1,142 @@
-import { ArrowRight } from "lucide-react";
-import method from "./method";
-import section4 from "./section4";
-export default function Home() {
+import SystemHeader from "@/app/components/layout/SystemHeader";
 
-  const steps = [
-    { title: "Diagnose", description: "Uncover real execution flow" },
-    { title: "Secure", description: "Identify where reality diverges from process" },
-    { title: "Resolve", description: "Strengthen and scale operations" }
-  ];
+import { Hero } from "@/app/components/Sections/Hero";
+import { About } from "@/app/components/Sections/About";
+import { Industries } from "@/app/components/Sections/Industries";
+import { Method } from "@/app/components/Sections/method";
+import { ProcessTimeline } from "@/app/components/Sections/ProcessTimeline";
+import { Services } from "@/app/components/Sections/Services";
+import { Governance } from "@/app/components/Sections/Governance";
+import { FAQ } from "@/app/components/Sections/FAQ";
+import Contact from "@/app/components/Sections/Contact";
+import { Footer } from "@/app/components/Sections/Footer";
+import { BackToTop } from "@/app/components/ui/BackToTop";
 
+import Link from "next/link";
+
+export default function HomePage() {
   return (
-    <main>
+    <main className="bg-[var(--color-background)] overflow-hidden">
 
-      {/* HERO SECTION */}
-      <section className="min-h-screen flex items-center justify-center text-center px-6">
-        <div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Most operations don’t fail on paper.<br />
-            They fail in execution.
-          </h1>
+      {/* ======================================================
+          SYSTEM HEADER
+      ====================================================== */}
+      <SystemHeader />
 
-          <p className="text-lg md:text-xl text-slate-600 mb-8">
-            Anchorpoint reveals how operations actually run—restoring visibility, control, and stability.
-          </p>
+      {/* ======================================================
+          HERO
+      ====================================================== */}
+      <div id="hero">
+        <Hero />
+      </div>
 
-          <button className="bg-teal-500 text-white px-8 py-4 rounded-lg">
-            Request Operational Assessment
-          </button>
-        </div>
-      </section>
+      {/* ======================================================
+          PHILOSOPHY
+      ====================================================== */}
+      <About />
 
-      {/* SECTION 2 — THE PROBLEM */}
-      <section className="py-24 px-6 bg-slate-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900">
-            Most organizations don’t lack strategy.
-          </h2>
+      {/* ======================================================
+          INDUSTRIAL ENVIRONMENTS
+      ====================================================== */}
+      <Industries />
 
-          <p className="text-lg md:text-xl text-slate-600 mb-8">
-            They lack visibility into how execution actually unfolds.
-          </p>
+      {/* ======================================================
+          METHOD
+      ====================================================== */}
+      <div id="method">
+        <Method />
+      </div>
 
-          <p className="text-base md:text-lg text-slate-500">
-            Plans look perfect on paper, but reality diverges quietly—through small, compounding gaps that go unseen.
-          </p>
-        </div>
-      </section>
+      {/* ======================================================
+          EXECUTION FLOW
+      ====================================================== */}
+      <ProcessTimeline />
 
-      {/* SECTION 3 — METHOD */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ======================================================
+          SERVICES / CAPABILITIES
+      ====================================================== */}
+      <div id="services">
+        <Services />
+      </div>
 
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl mb-6 text-slate-900">
-              Method
-            </h2>
-            <p className="text-xl text-teal-600">
-              Diagnose → Secure → Solve
-            </p>
-          </div>
+      {/* ======================================================
+          GOVERNANCE BRIDGE
+      ====================================================== */}
+      <section className="section-spacing registry-transition relative overflow-hidden text-white">
 
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        {/* Atmospheric Grid */}
+        <div className="absolute inset-0 opacity-[0.04] registry-grid" />
 
-              {steps.map((step, index) => (
-                <div key={index} className="flex items-center gap-8">
+        {/* Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-teal-500/10 blur-[140px]" />
 
-                  <div className="text-center group hover:scale-105 transition-transform">
-                    <h3 className="text-2xl mb-2 text-slate-900 group-hover:text-teal-600 transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-slate-600">
-                      {step.description}
-                    </p>
-                  </div>
+        <div className="system-container relative z-10">
 
-                  {index < steps.length - 1 && (
-                    <span className="hidden md:block text-teal-500 text-xl">
-                      →
-                    </span>
-                  )}
+          <div className="max-w-5xl mx-auto text-center">
 
-                </div>
-              ))}
-
+            <div className="text-registry-label mb-6 text-slate-400">
+              GOVERNANCE OBSERVATION INFRASTRUCTURE
             </div>
+
+            <h2 className="section-heading mb-8 leading-tight">
+
+              Operational instability becomes governable
+              when execution can be continuously observed.
+
+            </h2>
+
+            <p className="section-subtext text-slate-300 max-w-3xl mx-auto mb-12">
+
+              The Governance Registry transforms fragmented operational activity
+              into observable intelligence —
+              revealing pressure accumulation,
+              leakage concentration,
+              stabilization progression,
+              and governance recovery conditions.
+
+            </p>
+
+            <Link
+              href="/registry"
+              className="btn-primary bg-white text-slate-950 hover:bg-slate-200"
+            >
+              Access Governance Registry
+            </Link>
+
           </div>
 
         </div>
+
       </section>
+
+      {/* ======================================================
+          GOVERNANCE
+      ====================================================== */}
+      <div id="governance">
+        <Governance />
+      </div>
+
+      {/* ======================================================
+          FAQ
+      ====================================================== */}
+      <FAQ />
+
+      {/* ======================================================
+          CONTACT
+      ====================================================== */}
+      <div id="contact">
+        <Contact />
+      </div>
+
+      {/* ======================================================
+          FOOTER
+      ====================================================== */}
+      <Footer />
+
+      {/* ======================================================
+          UTILITIES
+      ====================================================== */}
+      <BackToTop />
 
     </main>
   );

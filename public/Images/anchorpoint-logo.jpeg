@@ -1,0 +1,8 @@
+<Image
+  src="/images/anchorpoint-logo.jpeg"
+  alt="Anchorpoint Operational Intelligence Infrastructure"
+  width={720}
+  height={720}
+  priority
+  className="w-full max-w-lg mx-auto opacity-95 mix-blend-screen drop-shadow-2xl"
+/>
