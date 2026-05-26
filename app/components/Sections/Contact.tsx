@@ -1,9 +1,12 @@
+"use client";
+
 import {
   Mail,
   MessageSquare,
   Phone,
   MapPin,
-  Calendar
+  Calendar,
+  ArrowUpRight,
 } from "lucide-react";
 
 import Section from "../ui/Section";
@@ -12,6 +15,7 @@ import Grid from "../ui/Grid";
 import Card from "../ui/Card";
 import Stack from "../ui/Stack";
 import SectionHeading from "../ui/SectionHeading";
+
 import Button from "@/app/components/ui/Button";
 
 export default function Contact() {
@@ -20,124 +24,379 @@ export default function Contact() {
 
     <Section
       id="contact"
-      className="bg-[var(--color-surface)]"
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--color-surface)]
+      "
     >
+
+      {/* =============================================
+         ATMOSPHERIC LAYER
+      ============================================= */}
+
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[radial-gradient(circle_at_top,rgba(20,184,166,0.08),transparent_60%)]
+
+          pointer-events-none
+        "
+      />
 
       <Container>
 
+        {/* =========================================
+           SECTION HEADING
+        ========================================= */}
+
         <SectionHeading
           title="Request an Operational Assessment"
-          subtitle="Understand how your operations actually run—and where execution begins to break."
+          subtitle="
+            Understand how your operations actually run —
+            and where execution begins to fracture under
+            structural pressure.
+          "
         />
+
+        {/* =========================================
+           MAIN GRID
+        ========================================= */}
 
         <Grid
           cols={2}
-          className="max-w-6xl mx-auto items-start"
+          className="
+            max-w-6xl
+            mx-auto
+            items-start
+            gap-10
+          "
         >
 
-          {/* Form Placeholder */}
-          <Card>
+          {/* =====================================
+             LEFT PANEL
+          ===================================== */}
 
-            <h3 className="text-2xl text-[var(--color-text-primary)] mb-6">
+          <Card
+            className="
+              relative
+              overflow-hidden
 
-              Send Us a Message
+              border
+              border-[var(--color-border)]
 
-            </h3>
+              bg-[var(--color-card)]
+              backdrop-blur-xl
+            "
+          >
 
-            <div className="bg-[var(--color-surface)] rounded-lg p-8 text-center text-[var(--color-text-secondary)]">
+            {/* Glow */}
+            <div
+              className="
+                absolute
+                inset-0
 
-              Contact form integration coming next.
+                bg-[radial-gradient(circle_at_top_left,rgba(20,184,166,0.08),transparent_40%)]
+
+                pointer-events-none
+              "
+            />
+
+            <div className="relative z-10">
+
+              <h3
+                className="
+                  text-3xl
+                  tracking-[-0.04em]
+
+                  text-[var(--color-text-primary)]
+
+                  mb-6
+                "
+              >
+                Strategic Inquiry
+              </h3>
+
+              <p
+                className="
+                  text-[var(--color-text-secondary)]
+                  leading-relaxed
+
+                  mb-10
+                "
+              >
+                Anchorpoint evaluates operational continuity,
+                governance leakage, execution degradation,
+                and structural instability across institutional
+                systems.
+              </p>
+
+              {/* Placeholder Surface */}
+
+              <div
+                className="
+                  rounded-2xl
+
+                  border
+                  border-dashed
+                  border-[var(--color-border)]
+
+                  bg-[var(--color-surface)]
+
+                  p-10
+
+                  text-center
+                "
+              >
+
+                <div
+                  className="
+                    text-lg
+                    text-[var(--color-text-primary)]
+
+                    mb-3
+                  "
+                >
+                  Operational Intake Interface
+                </div>
+
+                <div
+                  className="
+                    text-sm
+                    text-[var(--color-text-secondary)]
+                  "
+                >
+                  Institutional assessment intake system
+                  currently undergoing sovereign expansion.
+                </div>
+
+              </div>
 
             </div>
 
           </Card>
 
-          {/* Contact Information */}
+          {/* =====================================
+             RIGHT PANEL
+          ===================================== */}
+
           <Stack gap={8}>
+
+            {/* ===================================
+               ACTIONS
+            =================================== */}
 
             <div>
 
-              <h3 className="text-2xl text-[var(--color-text-primary)] mb-6">
+              <h3
+                className="
+                  text-3xl
+                  tracking-[-0.04em]
 
-                Or Reach Out Directly
+                  text-[var(--color-text-primary)]
 
+                  mb-8
+                "
+              >
+                Direct Engagement
               </h3>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-5">
+
+                {/* ===============================
+                   DISCOVERY CALL
+                =============================== */}
 
                 <Button
                   href="https://calendly.com/anchorpoint/discovery"
+                  target="_blank"
                   className="
+                    group
+
+                    w-full
+
                     flex
                     items-center
-                    gap-4
+                    justify-between
+
+                    rounded-2xl
+
                     bg-[var(--color-primary)]
-                    hover:bg-[var(--color-primary-hover)]
-                    text-white
-                    p-4
-                    rounded-lg
+
+                    hover:scale-[1.01]
+                    hover:shadow-2xl
+
                     transition-all
                     duration-300
                   "
                 >
 
-                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex items-center gap-5">
 
-                    <Calendar className="w-6 h-6" />
+                    <div
+                      className="
+                        w-14
+                        h-14
+
+                        rounded-xl
+
+                        bg-white/15
+
+                        flex
+                        items-center
+                        justify-center
+
+                        flex-shrink-0
+                      "
+                    >
+
+                      <Calendar className="w-6 h-6 text-white" />
+
+                    </div>
+
+                    <div className="text-left">
+
+                      <div
+                        className="
+                          text-base
+                          font-medium
+
+                          text-white
+                        "
+                      >
+                        Schedule Discovery Session
+                      </div>
+
+                      <div
+                        className="
+                          text-sm
+                          text-teal-100
+                        "
+                      >
+                        Strategic operational assessment
+                      </div>
+
+                    </div>
 
                   </div>
 
-                  <div className="text-left">
+                  <ArrowUpRight
+                    className="
+                      w-5
+                      h-5
 
-                    <div className="font-medium">
-                      Schedule a Discovery Call
-                    </div>
+                      text-white
 
-                    <div className="text-sm text-teal-100">
-                      30-minute operational assessment
-                    </div>
+                      group-hover:translate-x-1
+                      group-hover:-translate-y-1
 
-                  </div>
+                      transition-transform
+                    "
+                  />
 
                 </Button>
+
+                {/* ===============================
+                   WHATSAPP
+                =============================== */}
 
                 <Button
                   href="https://wa.me/2349064398730"
                   target="_blank"
-                  rel="noopener noreferrer"
                   className="
+                    group
+
+                    w-full
+
                     flex
                     items-center
-                    gap-4
-                    bg-[var(--color-card)]
-                    hover:bg-[var(--color-surface)]
-                    text-[var(--color-text-primary)]
-                    p-4
-                    rounded-lg
+                    justify-between
+
+                    rounded-2xl
+
                     border
                     border-[var(--color-border)]
+
+                    bg-[var(--color-card)]
+
+                    hover:bg-[var(--color-surface)]
+
                     transition-all
                     duration-300
                   "
                 >
 
-                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex items-center gap-5">
 
-                    <MessageSquare className="w-6 h-6 text-[var(--color-primary)]" />
+                    <div
+                      className="
+                        w-14
+                        h-14
+
+                        rounded-xl
+
+                        bg-teal-100
+
+                        flex
+                        items-center
+                        justify-center
+
+                        flex-shrink-0
+                      "
+                    >
+
+                      <MessageSquare
+                        className="
+                          w-6
+                          h-6
+                          text-[var(--color-primary)]
+                        "
+                      />
+
+                    </div>
+
+                    <div className="text-left">
+
+                      <div
+                        className="
+                          text-base
+                          font-medium
+
+                          text-[var(--color-text-primary)]
+                        "
+                      >
+                        WhatsApp Communication
+                      </div>
+
+                      <div
+                        className="
+                          text-sm
+                          text-[var(--color-text-secondary)]
+                        "
+                      >
+                        +234 906 439 8730
+                      </div>
+
+                    </div>
 
                   </div>
 
-                  <div className="text-left">
+                  <ArrowUpRight
+                    className="
+                      w-5
+                      h-5
 
-                    <div className="font-medium">
-                      WhatsApp
-                    </div>
+                      text-[var(--color-text-secondary)]
 
-                    <div className="text-sm text-[var(--color-text-secondary)]">
-                      +234 906 439 8730
-                    </div>
+                      group-hover:translate-x-1
+                      group-hover:-translate-y-1
 
-                  </div>
+                      transition-transform
+                    "
+                  />
 
                 </Button>
 
@@ -145,74 +404,157 @@ export default function Contact() {
 
             </div>
 
-            <Card className="space-y-6">
+            {/* ===================================
+               CONTACT DETAILS
+            =================================== */}
 
-              <div className="flex items-start gap-4">
+            <Card
+              className="
+                border
+                border-[var(--color-border)]
 
-                <Mail className="w-5 h-5 text-[var(--color-primary)] mt-1 flex-shrink-0" />
+                bg-[var(--color-card)]
+
+                backdrop-blur-xl
+
+                space-y-8
+              "
+            >
+
+              {/* Email */}
+
+              <div className="flex items-start gap-5">
+
+                <Mail
+                  className="
+                    w-5
+                    h-5
+
+                    text-[var(--color-primary)]
+
+                    mt-1
+                    flex-shrink-0
+                  "
+                />
 
                 <div>
 
-                  <div className="text-sm text-[var(--color-text-secondary)] mb-1">
+                  <div
+                    className="
+                      text-sm
+                      uppercase
+                      tracking-[0.2em]
 
+                      text-[var(--color-text-secondary)]
+
+                      mb-2
+                    "
+                  >
                     Email
-
                   </div>
 
                   <a
                     href="mailto:anchorpointsolutions@gmail.com"
-                    className="text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors break-all"
+                    className="
+                      text-[var(--color-text-primary)]
+
+                      hover:text-[var(--color-primary)]
+
+                      transition-colors
+
+                      break-all
+                    "
                   >
-
                     anchorpointsolutions@gmail.com
-
                   </a>
 
                 </div>
 
               </div>
 
-              <div className="flex items-start gap-4">
+              {/* Phone */}
 
-                <Phone className="w-5 h-5 text-[var(--color-primary)] mt-1 flex-shrink-0" />
+              <div className="flex items-start gap-5">
+
+                <Phone
+                  className="
+                    w-5
+                    h-5
+
+                    text-[var(--color-primary)]
+
+                    mt-1
+                    flex-shrink-0
+                  "
+                />
 
                 <div>
 
-                  <div className="text-sm text-[var(--color-text-secondary)] mb-1">
+                  <div
+                    className="
+                      text-sm
+                      uppercase
+                      tracking-[0.2em]
 
+                      text-[var(--color-text-secondary)]
+
+                      mb-2
+                    "
+                  >
                     Phone
-
                   </div>
 
                   <a
                     href="tel:+2349064398730"
-                    className="text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors"
+                    className="
+                      text-[var(--color-text-primary)]
+
+                      hover:text-[var(--color-primary)]
+
+                      transition-colors
+                    "
                   >
-
                     +234 906 439 8730
-
                   </a>
 
                 </div>
 
               </div>
 
-              <div className="flex items-start gap-4">
+              {/* Location */}
 
-                <MapPin className="w-5 h-5 text-[var(--color-primary)] mt-1 flex-shrink-0" />
+              <div className="flex items-start gap-5">
+
+                <MapPin
+                  className="
+                    w-5
+                    h-5
+
+                    text-[var(--color-primary)]
+
+                    mt-1
+                    flex-shrink-0
+                  "
+                />
 
                 <div>
 
-                  <div className="text-sm text-[var(--color-text-secondary)] mb-1">
+                  <div
+                    className="
+                      text-sm
+                      uppercase
+                      tracking-[0.2em]
 
+                      text-[var(--color-text-secondary)]
+
+                      mb-2
+                    "
+                  >
                     Location
-
                   </div>
 
                   <p className="text-[var(--color-text-primary)]">
-
                     Rivers, Nigeria
-
                   </p>
 
                 </div>
@@ -230,4 +572,5 @@ export default function Contact() {
     </Section>
 
   );
+
 }

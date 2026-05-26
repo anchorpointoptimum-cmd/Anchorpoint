@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
 
-/* =========================================================
-   TYPES
-========================================================= */
-
-interface ButtonProps {
+export interface ButtonProps {
 
   children: ReactNode;
 
@@ -20,38 +18,6 @@ interface ButtonProps {
   target?: string;
 
 }
-
-/* =========================================================
-   VARIANT STYLES
-========================================================= */
-
-const variants = {
-
-  primary: `
-    bg-white
-    text-black
-    hover:bg-slate-200
-  `,
-
-  secondary: `
-    bg-white/10
-    border
-    border-white/10
-    text-white
-    hover:bg-white/15
-  `,
-
-  ghost: `
-    bg-transparent
-    text-white
-    hover:bg-white/5
-  `,
-
-};
-
-/* =========================================================
-   COMPONENT
-========================================================= */
 
 export default function Button({
 
@@ -69,7 +35,31 @@ export default function Button({
 
 }: ButtonProps) {
 
-  const baseStyles = `
+  const variants = {
+
+    primary: `
+      bg-white
+      text-black
+      hover:bg-slate-200
+    `,
+
+    secondary: `
+      bg-white/10
+      border
+      border-white/10
+      text-white
+      hover:bg-white/15
+    `,
+
+    ghost: `
+      bg-transparent
+      text-white
+      hover:bg-white/5
+    `,
+
+  };
+
+  const styles = `
     inline-flex
     items-center
     justify-center
@@ -96,17 +86,13 @@ export default function Button({
     ${className}
   `;
 
-  /* =============================================
-     LINK BUTTON
-  ============================================= */
-
   if (href) {
 
     return (
 
       <Link
         href={href}
-        className={baseStyles}
+        className={styles}
         target={target}
       >
 
@@ -118,15 +104,11 @@ export default function Button({
 
   }
 
-  /* =============================================
-     ACTION BUTTON
-  ============================================= */
-
   return (
 
     <button
       onClick={onClick}
-      className={baseStyles}
+      className={styles}
     >
 
       {children}
