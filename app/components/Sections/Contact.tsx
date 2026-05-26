@@ -16,7 +16,41 @@ import Card from "../ui/Card";
 import Stack from "../ui/Stack";
 import SectionHeading from "../ui/SectionHeading";
 
-import Button from "@/app/components/ui/Button";
+/* =========================================================
+   TEMPORARY DEPLOYMENT-SAFE BUTTON
+========================================================= */
+
+function ActionButton({
+  children,
+  href,
+  className = "",
+  target,
+}: {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+  target?: string;
+}) {
+
+  return (
+
+    <a
+      href={href}
+      target={target}
+      className={className}
+    >
+
+      {children}
+
+    </a>
+
+  );
+
+}
+
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 export default function Contact() {
 
@@ -33,7 +67,7 @@ export default function Contact() {
     >
 
       {/* =============================================
-         ATMOSPHERIC LAYER
+         ATMOSPHERIC BACKGROUND
       ============================================= */}
 
       <div
@@ -50,7 +84,7 @@ export default function Contact() {
       <Container>
 
         {/* =========================================
-           SECTION HEADING
+           HEADING
         ========================================= */}
 
         <SectionHeading
@@ -63,7 +97,7 @@ export default function Contact() {
         />
 
         {/* =========================================
-           MAIN GRID
+           GRID
         ========================================= */}
 
         <Grid
@@ -93,7 +127,6 @@ export default function Contact() {
             "
           >
 
-            {/* Glow */}
             <div
               className="
                 absolute
@@ -133,8 +166,6 @@ export default function Contact() {
                 and structural instability across institutional
                 systems.
               </p>
-
-              {/* Placeholder Surface */}
 
               <div
                 className="
@@ -185,10 +216,6 @@ export default function Contact() {
 
           <Stack gap={8}>
 
-            {/* ===================================
-               ACTIONS
-            =================================== */}
-
             <div>
 
               <h3
@@ -206,11 +233,11 @@ export default function Contact() {
 
               <div className="space-y-5">
 
-                {/* ===============================
+                {/* =================================
                    DISCOVERY CALL
-                =============================== */}
+                ================================= */}
 
-                <Button
+                <ActionButton
                   href="https://calendly.com/anchorpoint/discovery"
                   target="_blank"
                   className="
@@ -225,6 +252,8 @@ export default function Contact() {
                     rounded-2xl
 
                     bg-[var(--color-primary)]
+
+                    p-6
 
                     hover:scale-[1.01]
                     hover:shadow-2xl
@@ -297,13 +326,13 @@ export default function Contact() {
                     "
                   />
 
-                </Button>
+                </ActionButton>
 
-                {/* ===============================
+                {/* =================================
                    WHATSAPP
-                =============================== */}
+                ================================= */}
 
-                <Button
+                <ActionButton
                   href="https://wa.me/2349064398730"
                   target="_blank"
                   className="
@@ -321,6 +350,8 @@ export default function Contact() {
                     border-[var(--color-border)]
 
                     bg-[var(--color-card)]
+
+                    p-6
 
                     hover:bg-[var(--color-surface)]
 
@@ -352,6 +383,7 @@ export default function Contact() {
                         className="
                           w-6
                           h-6
+
                           text-[var(--color-primary)]
                         "
                       />
@@ -398,7 +430,7 @@ export default function Contact() {
                     "
                   />
 
-                </Button>
+                </ActionButton>
 
               </div>
 
