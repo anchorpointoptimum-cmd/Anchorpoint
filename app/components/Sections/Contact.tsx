@@ -12,7 +12,7 @@ import Grid from "../ui/Grid";
 import Card from "../ui/Card";
 import Stack from "../ui/Stack";
 import SectionHeading from "../ui/SectionHeading";
-import Button from "../ui/Button";
+import Button from "@/app/components/ui/Button";
 
 export default function Contact() {
 
