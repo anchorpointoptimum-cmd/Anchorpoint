@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode } from "react";
+import React from "react";
 
-export type ButtonProps = {
+export interface ButtonProps {
 
-  children: ReactNode;
+  children: React.ReactNode;
 
   href?: string;
 
@@ -17,7 +17,13 @@ export type ButtonProps = {
 
   target?: string;
 
-};
+  rel?: string;
+
+  type?: "button" | "submit" | "reset";
+
+  disabled?: boolean;
+
+}
 
 export default function Button({
 
@@ -33,28 +39,34 @@ export default function Button({
 
   target,
 
+  rel,
+
+  type = "button",
+
+  disabled = false,
+
 }: ButtonProps) {
 
-  const variants = {
+  const variantStyles = {
 
     primary: `
-      bg-white
-      text-black
-      hover:bg-slate-200
+      bg-[var(--color-primary)]
+      text-white
+      hover:bg-[var(--color-primary-hover)]
     `,
 
     secondary: `
-      bg-white/10
+      bg-[var(--color-card)]
       border
-      border-white/10
-      text-white
-      hover:bg-white/15
+      border-[var(--color-border)]
+      text-[var(--color-text-primary)]
+      hover:bg-[var(--color-surface)]
     `,
 
     ghost: `
       bg-transparent
-      text-white
-      hover:bg-white/5
+      text-[var(--color-text-primary)]
+      hover:bg-[var(--color-surface)]
     `,
 
   };
@@ -67,7 +79,10 @@ export default function Button({
     transition-all
     duration-300
 
-    ${variants[variant]}
+    disabled:opacity-50
+    disabled:pointer-events-none
+
+    ${variantStyles[variant]}
 
     ${className}
   `;
@@ -78,8 +93,9 @@ export default function Button({
 
       <Link
         href={href}
-        className={styles}
         target={target}
+        rel={rel}
+        className={styles}
       >
 
         {children}
@@ -93,7 +109,9 @@ export default function Button({
   return (
 
     <button
+      type={type}
       onClick={onClick}
+      disabled={disabled}
       className={styles}
     >
 
