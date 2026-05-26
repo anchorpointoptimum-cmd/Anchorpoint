@@ -1,41 +1,138 @@
+import Link from "next/link";
+import { ReactNode } from "react";
+
+/* =========================================================
+   TYPES
+========================================================= */
+
 interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
+
+  children: ReactNode;
+
   href?: string;
+
+  onClick?: () => void;
+
+  className?: string;
+
+  variant?: "primary" | "secondary" | "ghost";
+
   target?: string;
-  rel?: string;
+
 }
 
+/* =========================================================
+   VARIANT STYLES
+========================================================= */
+
+const variants = {
+
+  primary: `
+    bg-white
+    text-black
+    hover:bg-slate-200
+  `,
+
+  secondary: `
+    bg-white/10
+    border
+    border-white/10
+    text-white
+    hover:bg-white/15
+  `,
+
+  ghost: `
+    bg-transparent
+    text-white
+    hover:bg-white/5
+  `,
+
+};
+
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 export default function Button({
+
   children,
-  onClick,
+
   href,
+
+  onClick,
+
+  className = "",
+
+  variant = "primary",
+
   target,
-  rel,
+
 }: ButtonProps) {
 
-  const className =
-    "bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg transition-colors inline-block";
+  const baseStyles = `
+    inline-flex
+    items-center
+    justify-center
+    gap-3
+
+    rounded-2xl
+
+    px-6
+    py-4
+
+    text-sm
+    tracking-[-0.02em]
+
+    transition-all
+    duration-300
+
+    hover:scale-[1.02]
+    active:scale-[0.98]
+
+    backdrop-blur-xl
+
+    ${variants[variant]}
+
+    ${className}
+  `;
+
+  /* =============================================
+     LINK BUTTON
+  ============================================= */
 
   if (href) {
+
     return (
-      <a
+
+      <Link
         href={href}
+        className={baseStyles}
         target={target}
-        rel={rel}
-        className={className}
       >
+
         {children}
-      </a>
+
+      </Link>
+
     );
+
   }
 
+  /* =============================================
+     ACTION BUTTON
+  ============================================= */
+
   return (
+
     <button
       onClick={onClick}
-      className={className}
+      className={baseStyles}
     >
+
       {children}
+
     </button>
+
   );
+
 }
