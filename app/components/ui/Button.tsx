@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-export interface ButtonProps {
+export type ButtonProps = {
 
   children: ReactNode;
 
@@ -17,7 +17,7 @@ export interface ButtonProps {
 
   target?: string;
 
-}
+};
 
 export default function Button({
 
@@ -63,23 +63,9 @@ export default function Button({
     inline-flex
     items-center
     justify-center
-    gap-3
-
-    rounded-2xl
-
-    px-6
-    py-4
-
-    text-sm
-    tracking-[-0.02em]
 
     transition-all
     duration-300
-
-    hover:scale-[1.02]
-    active:scale-[0.98]
-
-    backdrop-blur-xl
 
     ${variants[variant]}
 
