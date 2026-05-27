@@ -23,7 +23,7 @@ export const fadeUp: Variants = {
     transition: {
 
       duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
+      ease: "linear" as const,
 
     },
 
@@ -73,7 +73,7 @@ export const scaleIn: Variants = {
     transition: {
 
       duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
+      ease: "linear" as const,
 
     },
 
@@ -102,7 +102,7 @@ export const slideLeft: Variants = {
     transition: {
 
       duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
+      ease: "linear" as const,
 
     },
 
@@ -131,7 +131,7 @@ export const slideRight: Variants = {
     transition: {
 
       duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
+      ease: "linear" as const,
 
     },
 
@@ -160,7 +160,7 @@ export const softReveal: Variants = {
     transition: {
 
       duration: 1.1,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 
@@ -184,7 +184,7 @@ export const glowPulse = {
 
       duration: 4,
       repeat: Infinity,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 
@@ -206,7 +206,7 @@ export const floatAnimation = {
 
       duration: 6,
       repeat: Infinity,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 
@@ -228,8 +228,7 @@ export const orbitalFloat = {
 
       duration: 60,
       repeat: Infinity,
-      ease: [0.16, 1, 0.3, 1]
-
+      ease: "linear" as const
     },
 
   },
@@ -256,7 +255,7 @@ export const intelligenceScan = {
 
       duration: 8,
       repeat: Infinity,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 
@@ -287,7 +286,7 @@ export const sovereignReveal: Variants = {
     transition: {
 
       duration: 1.2,
-      ease: [0.22, 1, 0.36, 1],
+      ease: "linear" as const
 
     },
 
@@ -309,7 +308,7 @@ export const panelHover = {
     transition: {
 
       duration: 0.3,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 
@@ -351,7 +350,7 @@ export const rotationalDrift = {
 
       duration: 12,
       repeat: Infinity,
-      ease: [0.16, 1, 0.3, 1]
+      ease: "linear" as const
 
     },
 

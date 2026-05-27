@@ -685,7 +685,7 @@ function MetricRow({
           animate={{ width }}
           transition={{
             duration: 1.2,
-            ease: [0.22, 1, 0.36, 1],
+            ease: "linear" as const,
           }}
           className={`
             h-full

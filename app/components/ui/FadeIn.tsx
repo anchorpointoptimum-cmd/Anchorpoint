@@ -36,7 +36,7 @@ export default function FadeIn({
       transition={{
         duration: 0.8,
         delay,
-        ease: [0.16, 1, 0.3, 1],
+        ease: "linear" as const,
       }}
       className={className}
     >
