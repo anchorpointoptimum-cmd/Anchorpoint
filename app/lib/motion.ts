@@ -160,7 +160,7 @@ export const softReveal: Variants = {
     transition: {
 
       duration: 1.1,
-      ease: "easeOut",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -184,7 +184,7 @@ export const glowPulse = {
 
       duration: 4,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -206,7 +206,7 @@ export const floatAnimation = {
 
       duration: 6,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -228,7 +228,7 @@ export const orbitalFloat = {
 
       duration: 60,
       repeat: Infinity,
-      ease: "linear",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -256,7 +256,7 @@ export const intelligenceScan = {
 
       duration: 8,
       repeat: Infinity,
-      ease: "linear",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -309,7 +309,7 @@ export const panelHover = {
     transition: {
 
       duration: 0.3,
-      ease: "easeOut",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
@@ -351,7 +351,7 @@ export const rotationalDrift = {
 
       duration: 12,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: [0.16, 1, 0.3, 1]
 
     },
 
