@@ -45,7 +45,7 @@ function getIntensity(
           "shadow-[0_0_24px_rgba(245,158,11,0.25)]",
       };
 
-    case "Medium":
+    case "Moderate":
       return {
         bg: "bg-teal-500/70",
         glow:

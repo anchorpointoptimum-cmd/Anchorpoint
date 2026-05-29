@@ -29,7 +29,7 @@ export function calculateGovernanceScore(
         score -= 10;
         break;
 
-      case "Medium":
+      case "Moderate":
         score -= 5;
         break;
 

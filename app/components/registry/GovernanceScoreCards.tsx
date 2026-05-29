@@ -30,20 +30,15 @@ interface GovernanceScoreCardsProps {
 
 const buildCards = (
   governance: GovernanceMetrics
-) => [
-  {
-    title: "Critical Signals",
-    value: governance.criticalSignals,
-    description:
-      "High-priority governance escalations currently affecting operational continuity.",
-    icon: ShieldAlert,
-    accent:
-      "from-red-500/20 to-red-500/5",
-    glow:
-      "group-hover:shadow-red-500/20",
-    valueColor:
-      "text-red-400",
-  },
+): {
+  title: string;
+  value: string | number;
+  description: string;
+  icon: any;
+  accent: string;
+  glow: string;
+  valueColor: string;
+}[] => [
 
   {
     title: "Unresolved Signals",

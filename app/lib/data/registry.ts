@@ -15,6 +15,12 @@ export async function getRegistryCompanies(): Promise<
 
       sector: "Maritime",
 
+      industry: "Marine Logistics",
+
+      country: "Nigeria",
+
+      operationalScale: "Regional",
+
       visibility: "Moderate",
 
       pressure: "Elevated",
@@ -36,6 +42,12 @@ export async function getRegistryCompanies(): Promise<
 
       sector: "Oil & Gas",
 
+      industry: "Energy Infrastructure",
+
+      country: "Nigeria",
+
+      operationalScale: "National",
+
       visibility: "High",
 
       pressure: "Critical",
@@ -56,6 +68,12 @@ export async function getRegistryCompanies(): Promise<
       name: "NorthAxis Manufacturing",
 
       sector: "Manufacturing",
+
+      industry: "Industrial Production",
+
+      country: "Nigeria",
+
+      operationalScale: "Regional",
 
       visibility: "Contained",
 

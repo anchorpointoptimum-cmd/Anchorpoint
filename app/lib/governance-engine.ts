@@ -1,29 +1,22 @@
 import {
   GovernanceDriver,
   GovernanceEvidence,
+  GovernanceMetrics,
 } from "@/app/types/registry";
 
 /* =========================================================
-   TYPES
+   SEVERITY WEIGHTS
 ========================================================= */
 
-export interface GovernanceComputation {
-  governanceRiskIndex: number;
-
-  stabilizationScore: number;
-
-  escalationProbability: number;
-
-  recoveryProbability: number;
-
-  operationalPressureIndex: number;
-
-  governanceState:
-    | "Stable"
-    | "Monitoring"
-    | "Escalated"
-    | "Critical";
-}
+const severityWeights: Record<
+  GovernanceEvidence["severity"],
+  number
+> = {
+  Low: 1,
+  Moderate: 2,
+  High: 4,
+  Critical: 6,
+};
 
 /* =========================================================
    COMPUTATION ENGINE
@@ -32,75 +25,81 @@ export interface GovernanceComputation {
 export function computeGovernanceMetrics(
   evidence: GovernanceEvidence[],
   drivers: GovernanceDriver[]
-): GovernanceComputation {
+): GovernanceMetrics {
 
-  /*
-    Severity Weights
-  */
-  const severityWeights = {
-    Low: 1,
-    Medium: 2,
-    High: 4,
-    Critical: 6,
-  };
-
-  /*
-    Risk Accumulation
-  */
   const totalRisk =
     evidence.reduce(
-      (sum, item) => {
-
-        const weight =
-          severityWeights[
-            item.severity
-          ] || 1;
-
-        return sum + weight;
-
-      },
+      (sum, item) =>
+        sum +
+        (severityWeights[item.severity] ?? 1),
       0
     );
 
-  /*
-    Driver Pressure
-  */
   const driverPressure =
     drivers.reduce(
-      (sum, driver) => {
-
-        const weight =
-          severityWeights[
-            driver.severity
-          ] || 1;
-
-        return sum + weight;
-
-      },
+      (sum, driver) =>
+        sum +
+        (severityWeights[driver.severity] ?? 1),
       0
     );
 
-  /*
-    Resolution Metrics
-  */
   const resolved =
     evidence.filter(
       (item) =>
-        item.status ===
-        "Resolved"
+        item.status === "Resolved"
     ).length;
 
   const unresolved =
-    evidence.filter(
-      (item) =>
-        item.status !==
-        "Resolved"
-    ).length;
+    evidence.length - resolved;
 
-  /*
-    Stabilization Score
-  */
-  const stabilizationScore =
+  /* ==========================================
+     GOVERNANCE SCORE
+  ========================================== */
+
+  const governanceScore =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        100 -
+          totalRisk * 4 -
+          driverPressure * 2
+      )
+    );
+
+  /* ==========================================
+     OPERATIONAL INTEGRITY
+  ========================================== */
+
+  const operationalIntegrity =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        100 -
+          totalRisk * 3
+      )
+    );
+
+  /* ==========================================
+     ANOMALY EXPOSURE
+  ========================================== */
+
+  const anomalyExposure =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        totalRisk * 5 +
+          unresolved * 4
+      )
+    );
+
+  /* ==========================================
+     STABILIZATION EFFICIENCY
+  ========================================== */
+
+  const stabilizationEfficiency =
     evidence.length === 0
       ? 100
       : Math.round(
@@ -110,100 +109,82 @@ export function computeGovernanceMetrics(
           ) * 100
         );
 
-  /*
-    Governance Risk Index
-  */
-  const governanceRiskIndex =
-    Math.min(
-      100,
-      Math.round(
-        totalRisk * 4 +
-        driverPressure * 3
-      )
-    );
+  /* ==========================================
+     GOVERNANCE COVERAGE
+  ========================================== */
 
-  /*
-    Escalation Probability
-  */
-  const escalationProbability =
-    Math.min(
-      100,
-      Math.round(
-        (
-          unresolved * 8 +
-          driverPressure * 4
-        )
-      )
-    );
-
-  /*
-    Recovery Probability
-  */
-  const recoveryProbability =
+  const governanceCoverage =
     Math.max(
       0,
       Math.min(
         100,
-        stabilizationScore -
-        escalationProbability / 4
+        100 -
+          driverPressure * 4
       )
     );
 
-  /*
-    Pressure Index
-  */
-  const operationalPressureIndex =
-    Math.min(
-      100,
-      Math.round(
-        (
-          totalRisk +
-          driverPressure
-        ) * 3
-      )
-    );
+  /* ==========================================
+     CRITICAL SIGNALS
+  ========================================== */
 
-  /*
-    Governance State
-  */
-  let governanceState:
-    GovernanceComputation["governanceState"] =
-      "Stable";
+  const criticalSignals =
+    evidence.filter(
+      (item) =>
+        item.severity ===
+        "Critical"
+    ).length;
+
+  /* ==========================================
+     UNRESOLVED SIGNALS
+  ========================================== */
+
+  const unresolvedSignals =
+    unresolved;
+
+  /* ==========================================
+     GOVERNANCE MOMENTUM
+  ========================================== */
+
+  let governanceMomentum:
+    GovernanceMetrics["governanceMomentum"] =
+      "Neutral";
 
   if (
-    governanceRiskIndex >= 75
+    stabilizationEfficiency >= 70
   ) {
-
-    governanceState =
-      "Critical";
-
+    governanceMomentum =
+      "Recovering";
   } else if (
-    governanceRiskIndex >= 55
+    unresolvedSignals >= 3
   ) {
-
-    governanceState =
-      "Escalated";
-
-  } else if (
-    governanceRiskIndex >= 35
-  ) {
-
-    governanceState =
-      "Monitoring";
-
+    governanceMomentum =
+      "Deteriorating";
   }
 
+  /* ==========================================
+     STABILIZATION PROGRESS
+  ========================================== */
+
+  const stabilizationProgress =
+    stabilizationEfficiency;
+
   return {
-    governanceRiskIndex,
+    governanceScore,
 
-    stabilizationScore,
+    operationalIntegrity,
 
-    escalationProbability,
+    anomalyExposure,
 
-    recoveryProbability,
+    stabilizationEfficiency,
 
-    operationalPressureIndex,
+    governanceCoverage,
 
-    governanceState,
+    criticalSignals,
+
+    unresolvedSignals,
+
+    governanceMomentum,
+
+    stabilizationProgress,
   };
 }

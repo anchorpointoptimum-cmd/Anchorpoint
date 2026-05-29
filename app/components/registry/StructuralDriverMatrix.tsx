@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 import {
   AlertTriangle,
-  Activity,
   ShieldAlert,
   Orbit,
   Brain,
@@ -16,29 +15,17 @@ import {
   panelHover,
 } from "@/app/lib/motion";
 
+import {
+  GovernanceDriver,
+} from "@/app/types/registry";
+
 /* =========================================================
    TYPES
 ========================================================= */
 
-interface StructuralDriver {
-
-  title: string;
-
-  description: string;
-
-  severity: string;
-
-  recurrence?: string;
-
-  operationalImpact?: string;
-
-  systemicCategory?: string;
-
-}
-
 interface StructuralDriverMatrixProps {
 
-  drivers: StructuralDriver[];
+  drivers: GovernanceDriver[];
 
 }
 
@@ -499,7 +486,7 @@ export default function StructuralDriverMatrix({
                           mb-4
                         "
                       >
-                        {driver.title}
+                        {driver.driver}
                       </h3>
 
                       {/* Description */}
@@ -510,7 +497,10 @@ export default function StructuralDriverMatrix({
                           text-lg
                         "
                       >
-                        {driver.description}
+                        {
+  driver.description ||
+  "Structural governance pressure influencing operational continuity, recovery capability, and institutional stability."
+}
                       </p>
 
                     </div>

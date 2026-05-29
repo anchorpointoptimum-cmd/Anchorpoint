@@ -208,11 +208,10 @@ export default async function CompanyPage({
       ============================================== */}
 
       <ExecutiveInterpretation
-        company={company}
-        governance={governance}
-        evidence={evidence}
-        drivers={drivers}
-      />
+  operationalState={company.stability}
+  dominantPattern={company.pressure}
+  governanceNarrative={company.description}
+/>
 
       {/* ==============================================
           GOVERNANCE SCORECARDS
@@ -255,9 +254,8 @@ export default async function CompanyPage({
 
         {/* Stabilization */}
         <StabilizationFlow
-          governance={governance}
-          evidence={evidence}
-        />
+  evidence={evidence}
+/>
 
       </div>
 
@@ -282,11 +280,8 @@ export default async function CompanyPage({
       ============================================== */}
 
       <RecoveryInterpretation
-        governance={governance}
-        evidence={evidence}
-        drivers={drivers}
-      />
-
+  governance={governance}
+/>
     </RegistryShell>
 
   );

@@ -19,6 +19,7 @@ import {
 import {
   GovernanceEvidence,
   TimelineEvent,
+  EvidenceSeverity,
 } from "@/app/types/registry";
 
 /* =========================================================
@@ -26,13 +27,44 @@ import {
 ========================================================= */
 
 interface GovernancePressureGraphProps {
+
   evidence: GovernanceEvidence[];
 
   timeline: TimelineEvent[];
+
 }
 
 /* =========================================================
-   GRAPH
+   SEVERITY NORMALIZATION
+========================================================= */
+
+function getSeverityScore(
+  severity: EvidenceSeverity
+): number {
+
+  switch (severity) {
+
+    case "Critical":
+      return 95;
+
+    case "High":
+      return 72;
+
+    case "Moderate":
+      return 46;
+
+    case "Low":
+      return 20;
+
+    default:
+      return 10;
+
+  }
+
+}
+
+/* =========================================================
+   COMPONENT
 ========================================================= */
 
 export default function GovernancePressureGraph({
@@ -47,32 +79,15 @@ export default function GovernancePressureGraph({
     evidence.map(
       (item, index) => {
 
-        let severityScore = 10;
-
-        switch (
-          item.severity
-        ) {
-
-          case "Critical":
-            severityScore = 95;
-            break;
-
-          case "High":
-            severityScore = 72;
-            break;
-
-          case "Medium":
-            severityScore = 46;
-            break;
-
-          case "Low":
-            severityScore = 20;
-            break;
-
-        }
+        const severityScore =
+          getSeverityScore(
+            item.severity
+          );
 
         return {
-          index: index + 1,
+
+          index:
+            index + 1,
 
           pressure:
             severityScore,
@@ -86,6 +101,7 @@ export default function GovernancePressureGraph({
 
           date:
             item.date,
+
         };
 
       }
@@ -101,24 +117,31 @@ export default function GovernancePressureGraph({
       className="
         relative
         overflow-hidden
+
         rounded-[36px]
+
         border
         border-white/10
+
         bg-white/[0.03]
+
         backdrop-blur-xl
+
         p-10
       "
     >
 
       {/* ==========================================
-          ATMOSPHERE
+          ATMOSPHERIC LAYER
       ========================================== */}
 
       <div
         className="
           absolute
           inset-0
+
           opacity-[0.03]
+
           registry-grid
         "
       />
@@ -128,10 +151,14 @@ export default function GovernancePressureGraph({
           absolute
           top-0
           left-1/2
+
           -translate-x-1/2
+
           w-[900px]
           h-[300px]
+
           bg-teal-500/10
+
           blur-[140px]
         "
       />
@@ -147,7 +174,9 @@ export default function GovernancePressureGraph({
             text-[11px]
             uppercase
             tracking-[0.22em]
+
             text-slate-500
+
             mb-5
           "
         >
@@ -158,9 +187,12 @@ export default function GovernancePressureGraph({
           className="
             text-4xl
             md:text-5xl
+
             tracking-[-0.05em]
             leading-tight
+
             text-white
+
             max-w-4xl
           "
         >
@@ -178,6 +210,7 @@ export default function GovernancePressureGraph({
         className="
           relative
           z-10
+
           h-[420px]
           w-full
         "

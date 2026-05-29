@@ -11,6 +11,10 @@ export type RegistryCompany = {
 
   sector: string;
 
+  industry: string;
+
+  country: string;
+
   visibility: string;
 
   pressure: string;
@@ -20,6 +24,8 @@ export type RegistryCompany = {
   description: string;
 
   certificationState: string;
+
+  operationalScale?: string;
 };
 
 /* =========================================================
@@ -50,7 +56,9 @@ export type EvidenceStatus =
   | "Monitoring"
   | "Escalated";
 
-export type EvidenceItem = {
+export type GovernanceEvidence = {
+  id: string;
+
   title: string;
 
   description: string;
@@ -67,6 +75,8 @@ export type EvidenceItem = {
 
   estimatedLeakageValue?: number;
 };
+
+export type EvidenceItem = GovernanceEvidence;
 
 /* =========================================================
    GOVERNANCE DRIVERS
@@ -90,21 +100,28 @@ export type OperationalImpact =
   | "Stabilization Pressure";
 
 export type GovernanceDriver = {
+
+  driver: string;
+
   severity: DriverSeverity;
 
   recurrence: DriverRecurrence;
 
   operationalImpact: OperationalImpact;
-};
 
+  description?: string;
+
+  systemicCategory?: string;
+
+};
 /* =========================================================
    GOVERNANCE INTERPRETATION
 ========================================================= */
 
 export type GovernanceMomentum =
   | "Recovering"
-  | "Deteriorating"
-  | "Neutral";
+  | "Neutral"
+  | "Deteriorating";
 
 export type OperationalState =
   | "Stable"
@@ -117,3 +134,71 @@ export type DriverState =
   | "Persistent Structural Pressure"
   | "Recovery Constraint Active"
   | "Structural Escalation";
+
+/* =========================================================
+   GOVERNANCE METRICS
+========================================================= */
+
+export type GovernanceMetrics = {
+  governanceScore: number;
+
+  operationalIntegrity: number;
+
+  anomalyExposure: number;
+
+  stabilizationEfficiency: number;
+
+  governanceCoverage: number;
+
+  criticalSignals: number;
+
+  unresolvedSignals: number;
+
+  governanceMomentum: GovernanceMomentum;
+
+  stabilizationProgress: number;
+};
+
+/* =========================================================
+   STRUCTURAL METRICS
+========================================================= */
+
+export type StructuralPressureLevel =
+  | "Low"
+  | "Moderate"
+  | "High"
+  | "Critical";
+
+export type LeakageExposure = {
+  value: number;
+
+  currency?: string;
+};
+
+export type StabilityMetrics = {
+  operationalContinuity: number;
+
+  governanceIntegrity: number;
+
+  executionStability: number;
+
+  recoveryCapability: number;
+};
+
+/* =========================================================
+   HEATMAP STRUCTURES
+========================================================= */
+
+export type GovernanceHeatmapCell = {
+  label: string;
+
+  severity: DriverSeverity;
+};
+
+export type StructuralDriverMatrixItem = {
+  driver: string;
+
+  impact: OperationalImpact;
+
+  severity: DriverSeverity;
+};
