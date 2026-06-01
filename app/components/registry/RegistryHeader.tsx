@@ -1,17 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import type { ReactNode } from "react";
 
 import {
   ArrowLeft,
   Shield,
   Globe,
-  Building2,
   Activity,
   Crown,
 } from "lucide-react";
-
-import Link from "next/link";
 
 import {
   fadeUp,
@@ -25,105 +24,78 @@ import {
 ========================================================= */
 
 interface Company {
-
   name: string;
-
   industry: string;
-
   country: string;
-
   sector?: string;
-
   operationalScale?: string;
-
 }
 
 interface Governance {
-
   governanceScore: number;
-
   operationalIntegrity: number;
-
   anomalyExposure: number;
-
   stabilizationEfficiency: number;
-
   governanceCoverage: number;
-
 }
 
 interface RegistryHeaderProps {
-
   company: Company;
-
   governance: Governance;
-
 }
 
 /* =========================================================
-   HELPERS
+   GOVERNANCE STATE
 ========================================================= */
 
-function governanceState(
-  score: number
-) {
-
+function governanceState(score: number) {
   if (score >= 85) {
-
     return {
-      label:
-        "Institutionally Stable",
-      color:
-        "text-teal-400",
-      glow:
-        "bg-teal-500/10",
-      border:
-        "border-teal-500/20",
+      label: "Institutionally Stable",
+      color: "text-teal-400",
+      glow: "bg-teal-500/10",
+      border: "border-teal-500/20",
     };
-
   }
 
   if (score >= 70) {
-
     return {
-      label:
-        "Operationally Controlled",
-      color:
-        "text-blue-400",
-      glow:
-        "bg-blue-500/10",
-      border:
-        "border-blue-500/20",
+      label: "Operationally Controlled",
+      color: "text-blue-400",
+      glow: "bg-blue-500/10",
+      border: "border-blue-500/20",
     };
-
   }
 
   if (score >= 50) {
-
     return {
-      label:
-        "Elevated Governance Pressure",
-      color:
-        "text-amber-400",
-      glow:
-        "bg-amber-500/10",
-      border:
-        "border-amber-500/20",
+      label: "Elevated Governance Pressure",
+      color: "text-amber-400",
+      glow: "bg-amber-500/10",
+      border: "border-amber-500/20",
     };
-
   }
 
   return {
-    label:
-      "Critical Governance Instability",
-    color:
-      "text-red-400",
-    glow:
-      "bg-red-500/10",
-    border:
-      "border-red-500/20",
+    label: "Critical Governance Instability",
+    color: "text-red-400",
+    glow: "bg-red-500/10",
+    border: "border-red-500/20",
   };
+}
 
+function recoveryMomentum(score: number) {
+  if (score >= 85) return "Normalized";
+  if (score >= 70) return "Recovering";
+  if (score >= 50) return "Transitional";
+  return "Deteriorating";
+}
+
+function pressureClassification(score: number) {
+  if (score >= 85) return "Low";
+  if (score >= 70) return "Moderate";
+  if (score >= 50) return "Elevated";
+  return "Critical";
 }
 
 /* =========================================================
@@ -134,14 +106,30 @@ export default function RegistryHeader({
   company,
   governance,
 }: RegistryHeaderProps) {
+  const state = governanceState(
+    governance.governanceScore
+  );
 
-  const governanceStateData =
-    governanceState(
+  const momentum =
+    recoveryMomentum(
       governance.governanceScore
     );
 
-  return (
+  const pressure =
+    pressureClassification(
+      governance.governanceScore
+    );
 
+  const executiveSnapshot =
+    governance.governanceScore >= 85
+      ? "Governance stability remains institutionally mature with strong operational integrity and limited systemic pressure exposure."
+      : governance.governanceScore >= 70
+      ? "Governance conditions remain operationally controlled with measurable stabilization momentum and manageable anomaly concentration."
+      : governance.governanceScore >= 50
+      ? "Governance systems are experiencing elevated operational pressure while recovery mechanisms continue driving stabilization progression."
+      : "Governance instability continues exerting structural operational pressure requiring active recovery and oversight intervention.";
+
+  return (
     <motion.section
       variants={staggerContainer}
       initial="hidden"
@@ -156,10 +144,7 @@ export default function RegistryHeader({
         p-10
       "
     >
-
-      {/* =====================================================
-          ATMOSPHERE
-      ===================================================== */}
+      {/* Atmosphere */}
 
       <div
         className="
@@ -183,9 +168,7 @@ export default function RegistryHeader({
         "
       />
 
-      {/* =====================================================
-          TOP BAR
-      ===================================================== */}
+      {/* Top Bar */}
 
       <motion.div
         variants={fadeUp}
@@ -201,33 +184,38 @@ export default function RegistryHeader({
           mb-14
         "
       >
-
-        {/* Back */}
-        <Link
-          href="/registry"
-          className="
-            inline-flex
-            items-center
-            gap-3
-            text-sm
-            text-slate-400
-            hover:text-white
-            transition-colors
-          "
-        >
-
-          <ArrowLeft
+        <div className="flex items-center gap-4 flex-wrap">
+          <Link
+            href="/"
             className="
-              w-4
-              h-4
+              inline-flex
+              items-center
+              gap-2
+              text-sm
+              text-slate-400
+              hover:text-white
+              transition-colors
             "
-          />
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Homepage
+          </Link>
 
-          Back to Registry
+          <span className="text-slate-700">/</span>
 
-        </Link>
+          <Link
+            href="/registry"
+            className="
+              text-sm
+              text-slate-400
+              hover:text-white
+              transition-colors
+            "
+          >
+            Governance Registry
+          </Link>
+        </div>
 
-        {/* Status */}
         <div
           className={`
             inline-flex
@@ -239,34 +227,29 @@ export default function RegistryHeader({
             border
             bg-white/[0.03]
             backdrop-blur-xl
-            ${governanceStateData.border}
+            ${state.border}
           `}
         >
-
           <Activity
             className={`
               w-4
               h-4
-              ${governanceStateData.color}
+              ${state.color}
             `}
           />
 
           <span
             className={`
               text-sm
-              ${governanceStateData.color}
+              ${state.color}
             `}
           >
-            {governanceStateData.label}
+            {state.label}
           </span>
-
         </div>
-
       </motion.div>
 
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
+      {/* Main Content */}
 
       <div
         className="
@@ -275,19 +258,11 @@ export default function RegistryHeader({
           grid
           xl:grid-cols-[1.3fr_0.7fr]
           gap-12
-          items-start
         "
       >
+        {/* Left */}
 
-        {/* =================================================
-            LEFT SIDE
-        ================================================= */}
-
-        <motion.div
-          variants={fadeUp}
-        >
-
-          {/* Eyebrow */}
+        <motion.div variants={fadeUp}>
           <div
             className="
               flex
@@ -296,7 +271,6 @@ export default function RegistryHeader({
               mb-6
             "
           >
-
             <Crown
               className="
                 w-5
@@ -313,12 +287,10 @@ export default function RegistryHeader({
                 text-cyan-400
               "
             >
-              Sovereign Governance Registry
+              Governance Intelligence Briefing
             </div>
-
           </div>
 
-          {/* Company Name */}
           <h1
             className="
               text-5xl
@@ -326,186 +298,91 @@ export default function RegistryHeader({
               tracking-[-0.08em]
               leading-[0.95]
               text-white
-              mb-8
+              mb-4
             "
           >
             {company.name}
           </h1>
 
-          {/* Description */}
-          <p
+          <div
             className="
               text-xl
-              leading-relaxed
-              text-slate-400
-              max-w-4xl
-              mb-10
+              text-cyan-400
+              mb-8
             "
           >
-            Institutional governance observability
-            and operational intelligence profile
-            across systemic governance ecosystems.
-          </p>
+            Governance Registry Profile
+          </div>
 
-          {/* Meta Grid */}
+          <div className="max-w-4xl mb-10">
+            <div
+              className="
+                text-[11px]
+                uppercase
+                tracking-[0.22em]
+                text-slate-500
+                mb-4
+              "
+            >
+              Executive Snapshot
+            </div>
+
+            <p
+              className="
+                text-xl
+                leading-relaxed
+                text-slate-300
+              "
+            >
+              {executiveSnapshot}
+            </p>
+          </div>
+
           <div
             className="
               grid
-              md:grid-cols-3
+              md:grid-cols-2
+              xl:grid-cols-4
               gap-5
             "
           >
+            <InfoCard
+              icon={
+                <Shield className="w-5 h-5 text-teal-400" />
+              }
+              label="Governance State"
+              value={state.label}
+            />
 
-            {/* Industry */}
-            <motion.div
-              variants={scaleIn}
-              {...panelHover}
-              className="
-                rounded-[28px]
-                border
-                border-white/10
-                bg-white/[0.03]
-                p-6
-              "
-            >
+            <InfoCard
+              icon={
+                <Activity className="w-5 h-5 text-cyan-400" />
+              }
+              label="Recovery Momentum"
+              value={momentum}
+            />
 
-              <Building2
-                className="
-                  w-5
-                  h-5
-                  text-blue-400
-                  mb-5
-                "
-              />
+            <InfoCard
+              icon={
+                <Crown className="w-5 h-5 text-amber-400" />
+              }
+              label="Pressure Classification"
+              value={pressure}
+            />
 
-              <div
-                className="
-                  text-xs
-                  uppercase
-                  tracking-[0.16em]
-                  text-slate-500
-                  mb-2
-                "
-              >
-                Industry
-              </div>
-
-              <div
-                className="
-                  text-lg
-                  text-white
-                "
-              >
-                {company.industry}
-              </div>
-
-            </motion.div>
-
-            {/* Country */}
-            <motion.div
-              variants={scaleIn}
-              {...panelHover}
-              className="
-                rounded-[28px]
-                border
-                border-white/10
-                bg-white/[0.03]
-                p-6
-              "
-            >
-
-              <Globe
-                className="
-                  w-5
-                  h-5
-                  text-cyan-400
-                  mb-5
-                "
-              />
-
-              <div
-                className="
-                  text-xs
-                  uppercase
-                  tracking-[0.16em]
-                  text-slate-500
-                  mb-2
-                "
-              >
-                Country
-              </div>
-
-              <div
-                className="
-                  text-lg
-                  text-white
-                "
-              >
-                {company.country}
-              </div>
-
-            </motion.div>
-
-            {/* Sector */}
-            <motion.div
-              variants={scaleIn}
-              {...panelHover}
-              className="
-                rounded-[28px]
-                border
-                border-white/10
-                bg-white/[0.03]
-                p-6
-              "
-            >
-
-              <Shield
-                className="
-                  w-5
-                  h-5
-                  text-teal-400
-                  mb-5
-                "
-              />
-
-              <div
-                className="
-                  text-xs
-                  uppercase
-                  tracking-[0.16em]
-                  text-slate-500
-                  mb-2
-                "
-              >
-                Sector
-              </div>
-
-              <div
-                className="
-                  text-lg
-                  text-white
-                "
-              >
-                {company.sector || "Institutional"}
-              </div>
-
-            </motion.div>
-
+            <InfoCard
+              icon={
+                <Globe className="w-5 h-5 text-blue-400" />
+              }
+              label="Operational Footprint"
+              value={company.country}
+            />
           </div>
-
         </motion.div>
 
-        {/* =================================================
-            RIGHT SIDE
-        ================================================= */}
+        {/* Right */}
 
-        <motion.div
-          variants={fadeUp}
-          className="
-            relative
-          "
-        >
-
+        <motion.div variants={fadeUp}>
           <div
             className={`
               relative
@@ -515,23 +392,19 @@ export default function RegistryHeader({
               bg-white/[0.03]
               backdrop-blur-xl
               p-10
-              ${governanceStateData.border}
+              ${state.border}
             `}
           >
-
-            {/* Glow */}
             <div
               className={`
                 absolute
                 inset-0
                 opacity-20
-                ${governanceStateData.glow}
+                ${state.glow}
               `}
             />
 
             <div className="relative z-10">
-
-              {/* Label */}
               <div
                 className="
                   text-xs
@@ -541,81 +414,109 @@ export default function RegistryHeader({
                   mb-6
                 "
               >
-                Governance Intelligence Index
+                Governance Stability Index
               </div>
 
-              {/* Score */}
               <div
                 className={`
                   text-8xl
                   tracking-[-0.10em]
                   mb-4
-                  ${governanceStateData.color}
+                  ${state.color}
                 `}
               >
                 {governance.governanceScore}
               </div>
 
-              {/* State */}
               <div
                 className={`
                   text-lg
-                  mb-10
-                  ${governanceStateData.color}
+                  mb-8
+                  ${state.color}
                 `}
               >
-                {governanceStateData.label}
+                {state.label}
               </div>
 
-              {/* Metrics */}
-              <div
-                className="
-                  space-y-5
-                  pt-8
-                  border-t
-                  border-white/10
-                "
-              >
+              <MetricRow
+                label="Operational Integrity"
+                value={governance.operationalIntegrity}
+              />
 
-                {/* Operational Integrity */}
-                <MetricRow
-                  label="Operational Integrity"
-                  value={governance.operationalIntegrity}
-                />
+              <MetricRow
+                label="Stabilization Efficiency"
+                value={governance.stabilizationEfficiency}
+              />
 
-                {/* Stabilization */}
-                <MetricRow
-                  label="Stabilization Efficiency"
-                  value={governance.stabilizationEfficiency}
-                />
+              <MetricRow
+                label="Governance Coverage"
+                value={governance.governanceCoverage}
+              />
 
-                {/* Governance Coverage */}
-                <MetricRow
-                  label="Governance Coverage"
-                  value={governance.governanceCoverage}
-                />
-
-                {/* Anomaly Exposure */}
-                <MetricRow
-                  label="Anomaly Exposure"
-                  value={governance.anomalyExposure}
-                  inverse
-                />
-
-              </div>
-
+              <MetricRow
+                label="Anomaly Exposure"
+                value={governance.anomalyExposure}
+                inverse
+              />
             </div>
-
           </div>
-
         </motion.div>
+      </div>
+    </motion.section>
+  );
+}
 
+/* =========================================================
+   INFO CARD
+========================================================= */
+
+function InfoCard({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <motion.div
+      variants={scaleIn}
+      {...panelHover}
+      className="
+        rounded-[28px]
+        border
+        border-white/10
+        bg-white/[0.03]
+        p-6
+      "
+    >
+      <div className="mb-5">
+        {icon}
       </div>
 
-    </motion.section>
+      <div
+        className="
+          text-xs
+          uppercase
+          tracking-[0.16em]
+          text-slate-500
+          mb-2
+        "
+      >
+        {label}
+      </div>
 
+      <div
+        className="
+          text-lg
+          text-white
+        "
+      >
+        {value}
+      </div>
+    </motion.div>
   );
-
 }
 
 /* =========================================================
@@ -631,76 +532,34 @@ function MetricRow({
   value: number;
   inverse?: boolean;
 }) {
-
-  const safeValue =
-    value || 0;
-
-  const width =
-    `${safeValue}%`;
+  const width = `${value}%`;
 
   return (
-
-    <div>
-
-      <div
-        className="
-          flex
-          items-center
-          justify-between
-          mb-3
-        "
-      >
-
-        <div
-          className="
-            text-sm
-            text-slate-400
-          "
-        >
+    <div className="mb-5">
+      <div className="flex justify-between mb-2">
+        <span className="text-slate-400 text-sm">
           {label}
-        </div>
+        </span>
 
-        <div
-          className="
-            text-sm
-            text-white
-          "
-        >
-          {safeValue}%
-        </div>
-
+        <span className="text-white text-sm">
+          {value}%
+        </span>
       </div>
 
-      <div
-        className="
-          h-2
-          rounded-full
-          overflow-hidden
-          bg-white/[0.05]
-        "
-      >
-
+      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width }}
           transition={{
             duration: 1.2,
-            ease: "linear" as const,
           }}
-          className={`
-            h-full
-            rounded-full
-            ${inverse
-              ? "bg-gradient-to-r from-red-500 to-amber-400"
-              : "bg-gradient-to-r from-cyan-400 to-teal-400"
-            }
-          `}
+          className={
+            inverse
+              ? "h-full bg-gradient-to-r from-red-500 to-amber-400"
+              : "h-full bg-gradient-to-r from-cyan-400 to-teal-400"
+          }
         />
-
       </div>
-
     </div>
-
   );
-
 }

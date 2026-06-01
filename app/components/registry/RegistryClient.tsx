@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import RegistryIntelligenceSummary from "@/app/components/registry/RegistryIntelligenceSummary";
+import GlobalObservatory from "@/app/components/registry/GlobalObservatory";
 
 import {
   Search,
@@ -13,6 +15,7 @@ import {
   Database,
   Radar,
 } from "lucide-react";
+import RegistryPhilosophy from "./RegistryPhilosophy";
 
 /* =========================================================
    TYPES
@@ -225,6 +228,17 @@ export default function RegistryClient({
         </div>
 
       </section>
+      {/* =====================================================
+    REGISTRY INTELLIGENCE SUMMARY
+===================================================== */}
+
+<RegistryIntelligenceSummary
+  companyCount={companies.length}
+/>
+
+<RegistryPhilosophy />
+
+<GlobalObservatory />
 
       {/* =====================================================
           FILTER LAYER

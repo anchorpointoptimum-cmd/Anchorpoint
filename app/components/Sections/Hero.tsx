@@ -37,13 +37,13 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950/30 pointer-events-none" />
 
             <Image
-              src="/images/Anchorpoint_Official_Logo.jpeg"
-              alt="Anchorpoint Optimum Global Ltd"
-              width={720}
-              height={720}
-              priority
-              className="w-full max-w-[320px] md:max-w-[460px] opacity-95 mix-blend-screen drop-shadow-[0_20px_60px_rgba(20,184,166,0.18)]"
-            />
+  src="/images/anchorpoint-logo.jpeg"
+  alt="Anchorpoint Optimum Global Ltd"
+  width={720}
+  height={720}
+  priority
+  className="w-full max-w-[320px] md:max-w-[460px] opacity-95 mix-blend-screen drop-shadow-[0_20px_60px_rgba(20,184,166,0.18)]"
+/>
 
           </div>
 
