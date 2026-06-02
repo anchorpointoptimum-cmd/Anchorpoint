@@ -10,7 +10,7 @@ return ( <header
      z-50
      border-b
      border-white/10
-     bg-black/80
+     bg-black/75
      backdrop-blur-xl
    "
  > <div
@@ -39,7 +39,7 @@ return ( <header
         className="
           text-white
           text-xl
-          font-medium
+          font-semibold
           tracking-tight
         "
       >
@@ -96,23 +96,24 @@ return ( <header
     <Link
       href="/#contact"
       className="
-        px-6
-        py-3
+        inline-flex
+        items-center
+        justify-center
         rounded-full
         bg-teal-500
-        text-black
+        px-6
+        py-3
         text-sm
         font-medium
+        text-black
         transition-all
+        hover:scale-[1.02]
         hover:bg-teal-400
-        hover:shadow-[0_0_40px_rgba(20,184,166,0.25)]
       "
     >
       Request Assessment
     </Link>
   </div>
 </header>
-```
-
 );
 }
