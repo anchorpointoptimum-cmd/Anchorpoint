@@ -1,124 +1,118 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export default function SiteHeader() {
-  return (
-    <header
+return ( <header
+   className="
+     sticky
+     top-0
+     z-50
+     border-b
+     border-white/10
+     bg-black/80
+     backdrop-blur-xl
+   "
+ > <div
+     className="
+       system-container
+       h-20
+       flex
+       items-center
+       justify-between
+     "
+   >
+{/* Brand */}
+
+```
+    <Link
+      href="/"
       className="
-        sticky
-        top-0
-        z-50
-        border-b
-        border-white/10
-        bg-black/70
-        backdrop-blur-xl
+        flex
+        flex-col
+        justify-center
+        transition-opacity
+        hover:opacity-90
       "
     >
-      <div
+      <span
         className="
-          system-container
-          h-20
-          flex
-          items-center
-          justify-between
+          text-white
+          text-xl
+          font-medium
+          tracking-tight
         "
       >
-        {/* Logo */}
+        Anchorpoint
+      </span>
 
-        <Link
-          href="/"
-          className="
-            flex
-            items-center
-            gap-3
-          "
-        >
-          <Image
-            src="/images/Anchorpoint Official Logo.jpeg"
-            alt="Anchorpoint"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+      <span
+        className="
+          text-[10px]
+          uppercase
+          tracking-[0.30em]
+          text-slate-500
+        "
+      >
+        Operational Intelligence
+      </span>
+    </Link>
 
-          <div>
-            <div
-              className="
-                text-white
-                font-medium
-                tracking-tight
-              "
-            >
-              Anchorpoint
-            </div>
+    {/* Navigation */}
 
-            <div
-              className="
-                text-[10px]
-                uppercase
-                tracking-[0.18em]
-                text-slate-500
-              "
-            >
-              Operational Intelligence
-            </div>
-          </div>
-        </Link>
+    <nav
+      className="
+        hidden
+        md:flex
+        items-center
+        gap-10
+      "
+    >
+      <Link
+        href="/"
+        className="
+          text-slate-400
+          hover:text-white
+          transition-colors
+        "
+      >
+        Home
+      </Link>
 
-        {/* Navigation */}
+      <Link
+        href="/registry"
+        className="
+          text-slate-400
+          hover:text-white
+          transition-colors
+        "
+      >
+        Governance Registry
+      </Link>
+    </nav>
 
-        <nav
-          className="
-            hidden
-            md:flex
-            items-center
-            gap-8
-          "
-        >
-          <Link
-            href="/"
-            className="
-              text-slate-400
-              hover:text-white
-              transition-colors
-            "
-          >
-            Home
-          </Link>
+    {/* CTA */}
 
-          <Link
-            href="/registry"
-            className="
-              text-slate-400
-              hover:text-white
-              transition-colors
-            "
-          >
-            Governance Registry
-          </Link>
-        </nav>
+    <Link
+      href="/#contact"
+      className="
+        px-6
+        py-3
+        rounded-full
+        bg-teal-500
+        text-black
+        text-sm
+        font-medium
+        transition-all
+        hover:bg-teal-400
+        hover:shadow-[0_0_40px_rgba(20,184,166,0.25)]
+      "
+    >
+      Request Assessment
+    </Link>
+  </div>
+</header>
+```
 
-        {/* CTA */}
-
-        <a
-          href="/#contact"
-          className="
-            px-5
-            py-3
-            rounded-full
-            bg-teal-500
-            text-black
-            text-sm
-            font-medium
-            hover:opacity-90
-            transition
-          "
-        >
-          Request Assessment
-        </a>
-      </div>
-    </header>
-  );
+);
 }
