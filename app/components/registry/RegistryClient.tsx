@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import RegistryIntelligenceSummary from "@/app/components/registry/RegistryIntelligenceSummary";
+import RegistryIntelligenceSummary from "@/app/components/registry/OperationalIntelligence";
 import GlobalObservatory from "@/app/components/registry/GlobalObservatory";
+
 
 import {
   Search,
@@ -106,6 +107,27 @@ export default function RegistryClient({
 
       <section className="relative border-b border-slate-900">
 
+        <div className="flex flex-wrap gap-4 mt-12">
+
+  <Link
+    href="/why-operations-drift"
+    className="
+      px-6
+      py-3
+      rounded-full
+      border
+      border-slate-700
+      text-slate-300
+      hover:border-teal-500
+      hover:text-white
+      transition
+    "
+  >
+    Why Operations Drift
+  </Link>
+
+</div>
+
         <div className="system-container py-28 md:py-36">
 
           <div className="max-w-6xl">
@@ -133,13 +155,10 @@ export default function RegistryClient({
             {/* Description */}
             <p className="max-w-3xl text-lg md:text-xl leading-relaxed text-slate-400 mb-14">
 
-              The Governance Registry functions as a live
-              operational intelligence layer —
-              exposing governance pressure,
-              execution leakage,
-              operational instability,
-              and stabilization conditions
-              across institutional environments.
+              The Governance Registry publishes observed
+operational reality — exposing governance pressure,
+execution leakage, operational instability,
+and stabilization conditions across institutional environments.
 
             </p>
 

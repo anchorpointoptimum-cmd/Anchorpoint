@@ -24,6 +24,77 @@ export default function HomePage() {
       <div id="hero">
         <Hero />
       </div>
+      
+
+{/* =====================================================
+    WHY OPERATIONS DRIFT BRIDGE
+===================================================== */}
+
+<section className="relative border-b border-slate-900">
+
+  <div className="system-container py-20">
+
+    <div className="max-w-5xl mx-auto text-center">
+
+      <div className="text-registry-label mb-6 text-teal-400">
+
+        OPERATIONAL REALITY
+
+      </div>
+
+      <h2 className="text-4xl md:text-5xl tracking-[-0.05em] leading-tight text-white mb-8">
+
+        Governance pressure rarely appears
+        all at once.
+
+      </h2>
+
+      <p className="max-w-3xl mx-auto text-lg text-slate-400 leading-relaxed mb-6">
+
+        Workarounds emerge.
+        Informal approvals replace formal ones.
+        Communication pathways evolve.
+        Operational reality gradually drifts away
+        from documented process.
+
+      </p>
+
+      <p className="max-w-3xl mx-auto text-lg text-slate-400 leading-relaxed mb-12">
+
+        The Registry exists to observe,
+        document,
+        and quantify that drift.
+
+      </p>
+
+      <Link
+        href="/why-operations-drift"
+        className="
+          inline-flex
+          items-center
+          rounded-full
+          border
+          border-slate-700
+          px-6
+          py-3
+          text-slate-200
+          hover:border-teal-500
+          hover:text-white
+          transition-all
+        "
+      >
+        Why Operations Drift
+      </Link>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* =====================================================
+    REGISTRY INTELLIGENCE SUMMARY
+===================================================== */}
 
       {/* ======================================================
           PHILOSOPHY
@@ -54,6 +125,61 @@ export default function HomePage() {
         <Services />
       </div>
 
+      {/* ======================================================
+    WHY OPERATIONS DRIFT
+====================================================== */}
+
+<section className="section-spacing border-t border-white/10">
+
+  <div className="system-container">
+
+    <div className="max-w-5xl mx-auto text-center">
+
+      <div className="text-registry-label mb-6 text-teal-400">
+        OPERATIONAL REALITY
+      </div>
+
+      <h2 className="section-heading mb-8">
+
+        Most operations do not fail
+        because people stop working.
+
+        <br />
+
+        They fail because reality changes.
+
+      </h2>
+
+      <p className="section-subtext max-w-3xl mx-auto mb-12">
+
+        Workarounds emerge.
+        Communication evolves.
+        Informal approvals replace formal ones.
+        Operational reality gradually drifts away from documented process.
+
+      </p>
+
+      <p className="section-subtext max-w-3xl mx-auto mb-12">
+
+        Anchorpoint exists to make that drift visible,
+        measurable,
+        and governable.
+
+      </p>
+
+      <Link
+        href="/why-operations-drift"
+        className="btn-secondary"
+      >
+        Why Operations Drift
+      </Link>
+
+    </div>
+
+  </div>
+
+</section>
+      
       {/* ======================================================
           GOVERNANCE BRIDGE
       ====================================================== */}
@@ -91,11 +217,20 @@ export default function HomePage() {
 
             </p>
 
+            <p className="text-slate-400 mb-10 max-w-2xl mx-auto">
+
+Understanding drift is the beginning.
+
+The Registry reveals what drift actually looks like
+inside operational systems.
+
+</p>
+
             <Link
               href="/registry"
               className="btn-primary bg-white text-slate-950 hover:bg-slate-200"
             >
-              Access Governance Registry
+              Explore the Governance Registry
             </Link>
 
           </div>

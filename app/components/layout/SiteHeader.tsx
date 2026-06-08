@@ -69,27 +69,38 @@ return ( <header
       "
     >
       <Link
-        href="/"
-        className="
-          text-slate-400
-          hover:text-white
-          transition-colors
-        "
-      >
-        Home
-      </Link>
+  href="/"
+  className="
+    text-slate-400
+    hover:text-white
+    transition-colors
+  "
+>
+  Home
+</Link>
 
-      <Link
-        href="/registry"
-        className="
-          text-slate-400
-          hover:text-white
-          transition-colors
-        "
-      >
-        Governance Registry
-      </Link>
-    </nav>
+<Link
+  href="/why-operations-drift"
+  className="
+    text-slate-400
+    hover:text-white
+    transition-colors
+  "
+>
+  Why Operations Drift
+</Link>
+
+<Link
+  href="/registry"
+  className="
+    text-slate-400
+    hover:text-white
+    transition-colors
+  "
+>
+  Governance Registry
+</Link>
+</nav>
 
     {/* CTA */}
 

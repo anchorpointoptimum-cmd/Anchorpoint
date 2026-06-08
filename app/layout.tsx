@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
+import { BackToTop } from "./components/ui/BackToTop";
 import SiteHeader from "@/app/components/layout/SiteHeader";
 import SiteFooter from "@/app/components/layout/SiteFooter";
 
@@ -145,6 +146,7 @@ export default function RootLayout({
           <SiteFooter />
         */}
 
+      <BackToTop />
       </body>
 
     </html>
