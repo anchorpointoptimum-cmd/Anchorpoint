@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SiteHeader() {
@@ -23,40 +24,55 @@ return ( <header
      "
    >
 {/* Brand */}
-
-```
     <Link
-      href="/"
+  href="/"
+  className="
+    flex
+    items-center
+    gap-3
+    transition-opacity
+    hover:opacity-90
+  "
+>
+  <Image
+    src="/images/anchorpoint-compass.jpeg"
+    alt="Anchorpoint"
+    width={34}
+    height={34}
+    className="object-contain"
+    priority
+  />
+
+  <div
+    className="
+      flex
+      flex-col
+      justify-center
+    "
+  >
+    <span
       className="
-        flex
-        flex-col
-        justify-center
-        transition-opacity
-        hover:opacity-90
+        text-white
+        text-xl
+        font-semibold
+        tracking-tight
       "
     >
-      <span
-        className="
-          text-white
-          text-xl
-          font-semibold
-          tracking-tight
-        "
-      >
-        Anchorpoint
-      </span>
+      Anchorpoint
+    </span>
 
-      <span
-        className="
-          text-[10px]
-          uppercase
-          tracking-[0.30em]
-          text-slate-500
-        "
-      >
-        Operational Intelligence
-      </span>
-    </Link>
+    <span
+      className="
+        text-[10px]
+        uppercase
+        tracking-[0.30em]
+        text-slate-500
+      "
+    >
+      Operational Intelligence
+    </span>
+  </div>
+</Link>
 
     {/* Navigation */}
 
@@ -69,38 +85,38 @@ return ( <header
       "
     >
       <Link
-  href="/"
-  className="
-    text-slate-400
-    hover:text-white
-    transition-colors
-  "
->
-  Home
-</Link>
+        href="/"
+        className="
+          text-slate-400
+          hover:text-white
+          transition-colors
+        "
+      >
+        Home
+      </Link>
 
-<Link
-  href="/why-operations-drift"
-  className="
-    text-slate-400
-    hover:text-white
-    transition-colors
-  "
->
-  Why Operations Drift
-</Link>
+      <Link
+        href="/why-operations-drift"
+        className="
+          text-slate-400
+          hover:text-white
+          transition-colors
+        "
+      >
+        Why Operations Drift
+      </Link>
 
-<Link
-  href="/registry"
-  className="
-    text-slate-400
-    hover:text-white
-    transition-colors
-  "
->
-  Governance Registry
-</Link>
-</nav>
+      <Link
+        href="/registry"
+        className="
+          text-slate-400
+          hover:text-white
+          transition-colors
+        "
+      >
+        Governance Registry
+      </Link>
+    </nav>
 
     {/* CTA */}
 

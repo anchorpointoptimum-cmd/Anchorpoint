@@ -24,8 +24,12 @@ export default function HomePage() {
       <div id="hero">
         <Hero />
       </div>
-      
-
+      <img
+  src="/images/anchorpoint-compass.jpeg"
+  alt="Test Logo"
+  width="200"
+/>
+    
 {/* =====================================================
     WHY OPERATIONS DRIFT BRIDGE
 ===================================================== */}
