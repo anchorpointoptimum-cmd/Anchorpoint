@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import RegistryPhilosophy from "./RegistryPhilosophy";
 
+import Image from "next/image";
+
 /* =========================================================
    TYPES
 ========================================================= */
@@ -88,18 +90,74 @@ export default function RegistryClient({
           GLOBAL ATMOSPHERE
       ===================================================== */}
 
-      <div className="pointer-events-none fixed inset-0">
+     <div className="pointer-events-none fixed inset-0 overflow-hidden">
 
-        {/* Registry Grid */}
-        <div className="absolute inset-0 opacity-[0.03] registry-grid" />
+  {/* Registry Grid */}
+  <div
+    className="
+      absolute
+      inset-0
+      opacity-[0.03]
+      registry-grid
+    "
+  />
 
-        {/* Upper Glow */}
-        <div className="absolute top-0 left-1/2 h-[520px] w-[1200px] -translate-x-1/2 bg-teal-500/10 blur-[180px]" />
+  {/* =====================================================
+      ANCHORPOINT COMPASS WATERMARK
+  ===================================================== */}
 
-        {/* Lower Glow */}
-        <div className="absolute bottom-0 right-0 h-[400px] w-[700px] bg-cyan-500/5 blur-[160px]" />
+  <div
+    className="
+      absolute
+      left-1/2
+      top-[38%]
+      -translate-x-1/2
+      -translate-y-1/2
+      opacity-[0.015]
+    "
+  >
+    <Image
+      src="/images/anchorpoint-compass.jpeg"
+      alt="Anchorpoint Compass"
+      width={1100}
+      height={1100}
+      priority
+      className="
+        object-contain
+        blur-[1px]
+        select-none
+      "
+    />
+  </div>
 
-      </div>
+  {/* Central Intelligence Glow */}
+  <div
+    className="
+      absolute
+      top-0
+      left-1/2
+      h-[520px]
+      w-[1200px]
+      -translate-x-1/2
+      bg-teal-500/10
+      blur-[180px]
+    "
+  />
+
+  {/* Observatory Glow */}
+  <div
+    className="
+      absolute
+      bottom-0
+      right-0
+      h-[400px]
+      w-[700px]
+      bg-cyan-500/5
+      blur-[160px]
+    "
+  />
+
+</div>
 
       {/* =====================================================
           HERO
